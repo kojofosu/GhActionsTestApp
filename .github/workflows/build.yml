@@ -30,6 +30,7 @@ jobs:
       - name: Setup JDK 11
         uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: '11'
           
       #Build android project with Gradle
