@@ -34,4 +34,4 @@ jobs:
           
       #Build android project with Gradle
       - name: Build project with Gradle
-      - run: ./gradlew build
+        run: ./gradlew build
