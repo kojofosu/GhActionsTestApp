@@ -40,7 +40,7 @@ jobs:
       # Build release apk
       - name: Build Release APK
         run: |
-          ./gradlew bundleRelease
+          ./gradlew assembleRelease
           
       # Sign the release
       - name: Sign Release
@@ -58,7 +58,7 @@ jobs:
           BUILD_TOOLS_VERSION: "30.0.2"
 
       # Example use of `signedReleaseFile` output -- not needed
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: Signed app bundle
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
