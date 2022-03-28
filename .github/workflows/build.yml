@@ -1,7 +1,7 @@
 # This workflow builds the android project.
 
 #Name of the workflow
-name: Generate Signed APK
+name: Build Android Project
 
 # Controls when the workflow will run
 on:
