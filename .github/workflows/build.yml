@@ -1,4 +1,4 @@
-# This workflow builds and generates a signed APK.
+# This workflow builds the android project.
 
 #Name of the workflow
 name: Generate Signed APK
