@@ -1,7 +1,7 @@
 # This workflow builds the android project.
 
 #Name of the workflow
-name: Build Android Project
+name: Generate Signed APK
 
 # Controls when the workflow will run
 on:
@@ -33,6 +33,32 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
           
-      #Build android project with Gradle
+      # Build android project with Gradle
       - name: Build project with Gradle
         run: ./gradlew build
+        
+      # Build release apk
+      - name: Build Release APK
+        run: |
+          ./gradlew assembleRelease
+          
+      # Sign the release
+      - name: Sign Release
+        uses: r0adkll/sign-android-release@v1
+        # ID used to access action output
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+        #Override the build version --optional : default is 29.0.3
+          BUILD_TOOLS_VERSION: "30.0.2"
+
+      # Example use of `signedReleaseFile` output -- not needed
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Signed app bundle
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
