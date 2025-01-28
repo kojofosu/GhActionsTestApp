@@ -57,11 +57,13 @@ jobs:
         
       # Build release apk
       - name: Build Release APK
+        if: ${{ github.event.inputs.variant }} == "cyad-drc"
         run: |
           ./gradlew assembleRelease
           
       # Sign the release
       - name: Sign Release
+        if: ${{ github.event.inputs.variant }} == "afrimoney-ao"
         uses: r0adkll/sign-android-release@v1
         # ID used to access action output
         id: sign_app
@@ -77,6 +79,7 @@ jobs:
 
       # Example use of `signedReleaseFile` output -- not needed
       - uses: actions/upload-artifact@v3
+        if: ${{ github.event.inputs.variant }} == "afrimoney-gm"
         with:
           name: Signed app bundle
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
