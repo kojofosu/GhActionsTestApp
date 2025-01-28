@@ -13,6 +13,20 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      variant:
+        description: "Select a variant"
+        required: true
+        default: 'acs-sl'
+        type: choice
+        options:
+          - opareta-ug
+          - afrimoney-gm
+          - afrimoney-ao
+          - mobipay-zm
+          - opareta-zm
+          - cyad-drc
+          - acs-sl
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
