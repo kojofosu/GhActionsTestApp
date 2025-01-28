@@ -58,7 +58,7 @@ jobs:
         
       # Build release apk
       - name: Build Release APK
-        if: ${{ github.event.inputs.variant == "cyad-drc"}}
+        if: ${{ github.event.inputs.variant == 'cyad-drc'}}
         run: |
           ./gradlew assembleRelease
           
