@@ -46,7 +46,11 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-          
+
+      - name: Print selected variant
+        run: |
+          echo "Selected variant is : ${{ github.event.inputs.variant }}"
+
       # Build android project with Gradle
       - name: Build project with Gradle
         run: ./gradlew build
